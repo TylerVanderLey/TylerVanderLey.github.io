@@ -1,0 +1,194 @@
+<html>
+  <script src='https://d3js.org/d3.v4.js'></script>
+  <head>
+    <title>Slide 3</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+  <body>
+    <h1>The Seasonality of COVID-19 Case Counts in the US Over Time</h1>
+    <p style="font-family: Trebuchet MS; font-size: 16px; padding-left: 10px;">
+      Not long after the wave caused by the Delta variant, the US saw another massive spike in cases over the period from 
+      December 2021 to February 2022. <br>By mid-January 2022, daily average case counts were just over 800,000, far above any 
+      previously recorded number up until that point.<br>
+      <br>
+      This time, the surge in cases was driven by the spread of the Omicron variant, another mutation of COVID-19 that proved to
+      be extremely transmissible,<br> and again was able to evade protection from previous infection and vaccination.<br>
+      <br>
+      After this surge, case counts of COVID-19 fell drastically and stayed rather low until mid-April. After that point, counts
+      rose again and have remained<br> rather steady around 100,000 per day since mid-May. Previous trends have indicated that we
+      may see another surge in the future as new variants arise, or<br> perhaps our collective immunity built up from prior infection 
+      could prevent another surge like we saw last winter. Either way, it is worthwhile studying these<br> trends in case counts so we 
+      can better predict and anticipate what will happen in the future. 
+    </p>
+    <p style="font-family: Trebuchet MS; font-size: 12px; padding-left: 10px; margin-top: 40px; margin-bottom: 0px;">
+      View exact counts in tooltip by hovering cursor over trend line:
+    </p>
+    <div class="chart">
+      <div class="axis-label">
+        <p style="font-family: sans-serif; font-size: 12px;">7-Day Avg Case Count</p>
+      </div>
+      <div class="chart-body">
+        <svg></svg>
+      </div>
+    </div>
+    <p style="font-family: Trebuchet MS; font-size: 12px; padding-left: 10px;">Click to advance slideshow:</p>
+    <div class="slideshow-buttons">
+      <a href="http://127.0.0.1:5500/index.html">
+        <button>1</button>
+      </a>
+      <a href="http://127.0.0.1:5500/index2.html">
+        <button>2</button>
+      </a>
+      <a href="http://127.0.0.1:5500/index3.html">
+        <button style="background: #7c736f;">3</button>
+      </a>
+    </div>
+    <script>
+      const width = 800;
+      const height = 400;
+      const margin = 50;
+      const marginLeft = 100;
+      d3.select("svg")
+        .attr("width", width + 2*margin + 400)
+        .attr("height", height + 2*margin)
+        .append("g")
+        .attr("transform", "translate("+marginLeft+","+margin+")");
+      var counter = 0;
+
+      d3.csv("cases.csv", 
+        function(rawData) {
+          counter += 1;
+          if (counter < 1000000) {
+            return { 
+              date : new Date(rawData.date), 
+              cases : parseFloat(rawData.cases_avg) 
+            }
+          }
+        },
+
+        function(data) {
+          var x = d3.scaleTime().domain([new Date("2020-01-21"), new Date("2022-07-15")]).range([0, width]);
+          var y = d3.scaleLinear().domain([0, 900000]).range([height, 0]);
+
+          var lineConstructor = d3.line().x(function(d) {return x(d.date)}).y(function(d) {return y(d.cases)});
+
+          d3.select("svg")
+            .append("path")
+            .attr("d", d3.line()([[300,50], [300,450]]))
+            .attr("class", "dashed")
+            .attr("stroke", "black")
+            .style("opacity", 0.15);
+
+          d3.select("svg")
+            .append("path")
+            .attr("d", d3.line()([[390,50], [390,450]]))
+            .attr("class", "dashed")
+            .attr("stroke", "black")
+            .style("opacity", 0.15);
+
+          d3.select("svg")
+            .append("path")
+            .attr("d", d3.line()([[525,50], [525,450]]))
+            .attr("class", "dashed")
+            .attr("stroke", "black")
+            .style("opacity", 0.15);
+
+          d3.select("svg")
+            .append("path")
+            .attr("d", d3.line()([[615,50], [615,450]]))
+            .attr("class", "dashed")
+            .attr("stroke", "black")
+            .style("opacity", 0.15);
+
+          d3.select("svg")
+            .append("path")
+            .attr("d", d3.line()([[660,50], [660,450]]))
+            .attr("class", "dashed")
+            .attr("stroke", "black")
+            .style("opacity", 0.4);
+
+          d3.select("svg")
+            .append("path")
+            .attr("d", d3.line()([[720,50], [720,450]]))
+            .attr("class", "dashed")
+            .attr("stroke", "black")
+            .style("opacity", 0.4);
+
+          d3.select("svg")
+            .append('g')
+            .append('text')
+            .html("Wave from late 2021 to early 2022,")
+            .style("font-family", "sans-serif")
+            .style("font-size", "12px")
+            .attr("transform", "translate(730,200)");
+
+          d3.select("svg")
+            .append('g')
+            .append('text')
+            .html("caused by Omicron variant")
+            .style("font-family", "sans-serif")
+            .style("font-size", "12px")
+            .attr("transform", "translate(730,220)");
+
+          d3.select("svg")
+            .append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", "blue")
+            .style("opacity", 0.5)
+            .attr("stroke-width", 2)
+            .attr("transform", "translate(50,50)")
+            .attr("d", lineConstructor);
+          d3.select("svg").append("g").attr("transform", "translate("+margin+","+margin+")").call(d3.axisLeft(y));
+          d3.select("svg").append("g").attr("transform", "translate("+margin+","+(height+margin)+")").call(d3.axisBottom(x));
+
+          var tooltipMarker = d3.select("svg")
+                                .append('g')
+                                .append('circle')
+                                .attr('r', 4)
+                                .attr("transform", "translate(50,50)");
+
+          var tooltipText = d3.select("svg")
+                              .append('g')
+                              .append('text');
+
+          function mousemove() {
+            var currXCoordinate = x.invert(d3.mouse(this)[0]);
+            var displayData = data[d3.bisector(function(d) { return d.date; }).left(data, currXCoordinate, 1)];
+            var displayDateStr = displayData.date.toString().slice(0,15);
+            var displayCasesStr = Intl.NumberFormat('en-US').format(displayData.cases);
+
+            tooltipMarker.attr("cx", x(displayData.date))
+                         .attr("cy", y(displayData.cases));
+            tooltipText.html(displayDateStr + "  |  " + "7-Day Avg Cases: " + displayCasesStr)
+                       .style("font-family", "sans-serif")
+                       .style("font-size", "11px")
+                       .attr("x", x(displayData.date))
+                       .attr("y", y(displayData.cases));
+          }
+
+          function mouseover() {
+            tooltipMarker.style("opacity", 1);
+            tooltipText.style("opacity",1);
+          }
+
+          function mouseout() {
+            tooltipMarker.style("opacity", 0);
+            tooltipText.style("opacity", 0);
+          }
+
+          d3.select("svg").append('rect')
+            .style("fill", "none")
+            .style("pointer-events", "all")
+            .attr('width', width)
+            .attr('height', height)
+            .attr("transform", "translate(50,50)")
+            .on('mouseover', mouseover)
+            .on('mousemove', mousemove)
+            .on('mouseout', mouseout);            
+        }
+      )
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,24 @@
+.chart {
+  display: flex;
+  width: 50%;
+}
+
+.axis-label {
+  flex: 1;
+  margin-top: 180px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.chart-body {
+  margin-right: 20px;
+}
+
+.slideshow-buttons {
+  padding-left: 10px;
+}
+
+h1 {
+  font-family:'Trebuchet MS';
+  color: #060697;
+}
