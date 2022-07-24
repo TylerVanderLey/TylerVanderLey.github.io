@@ -49,6 +49,8 @@
         .attr("transform", "translate("+marginLeft+","+margin+")");
       var counter = 0;
 
+      // This site (https://d3-graph-gallery.com/graph/line_basic.html) helped me with the code in the section below for how to read in a CSV and to construct a line chart with d3.line
+      // (This applies to all 3 html files)
       d3.csv("cases.csv", 
         function(rawData) {
           counter += 1;
@@ -108,6 +110,8 @@
           d3.select("svg").append("g").attr("transform", "translate("+margin+","+margin+")").call(d3.axisLeft(y));
           d3.select("svg").append("g").attr("transform", "translate("+margin+","+(height+margin)+")").call(d3.axisBottom(x));
 
+          // This site (https://d3-graph-gallery.com/graph/line_cursor.html) helped me with the code in the section below for how to construct a tooltip that hovers above the chart
+          // (This applies to all 3 html files)
           var tooltipMarker = d3.select("svg")
                                 .append('g')
                                 .append('circle')
