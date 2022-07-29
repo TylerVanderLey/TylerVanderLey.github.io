@@ -6,7 +6,7 @@
 </head>
   <body>
     <h1>The Seasonality of COVID-19 Case Counts in the US Over Time</h1>
-    <p style="font-family: Trebuchet MS; font-size: 16px; padding-left: 10px;">
+    <p style="font-family: Trebuchet MS; font-size: 14px; padding-left: 10px;">
       A defining characteristic of COVID-19 case counts in the US is the tendency to for the number of
       cases to rise and fall rather quickly.<br>Often, these spikes are referred to as waves.<br>
       <br>
@@ -14,7 +14,7 @@
       early 2021, as highlighted below. During this time, the 7-day average <br>of case counts rose as high
       as roughly 250,000 cases per day, far above the peaks of previous waves of the pandemic. 
     </p>
-    <p style="font-family: Trebuchet MS; font-size: 12px; padding-left: 10px; margin-top: 132.5px; margin-bottom: 0px;">
+    <p style="font-family: Trebuchet MS; font-size: 12px; padding-left: 10px; margin-top: 100px; margin-bottom: 0px;">
       View exact counts in tooltip by hovering cursor over trend line:
     </p>
     <div class="chart">
@@ -38,8 +38,8 @@
       </a>
     </div>
     <script>
-      const width = 800;
-      const height = 400;
+      const width = 600;
+      const height = 300;
       const margin = 50;
       const marginLeft = 100;
       d3.select("svg")
@@ -70,14 +70,14 @@
 
           d3.select("svg")
             .append("path")
-            .attr("d", d3.line()([[300,50], [300,450]]))
+            .attr("d", d3.line()([[240,50], [240,350]]))
             .attr("class", "dashed")
             .attr("stroke", "black")
             .style("opacity", 0.4);
 
           d3.select("svg")
             .append("path")
-            .attr("d", d3.line()([[390,50], [390,450]]))
+            .attr("d", d3.line()([[305,50], [305,350]]))
             .attr("class", "dashed")
             .attr("stroke", "black")
             .style("opacity", 0.4);
@@ -88,7 +88,7 @@
             .html("Wave from late 2020 to early 2021,")
             .style("font-family", "sans-serif")
             .style("font-size", "12px")
-            .attr("transform", "translate(400,200)");
+            .attr("transform", "translate(315,200)");
 
             d3.select("svg")
             .append('g')
@@ -96,7 +96,7 @@
             .html("caused by original variant")
             .style("font-family", "sans-serif")
             .style("font-size", "12px")
-            .attr("transform", "translate(400,220)");
+            .attr("transform", "translate(315,220)");
 
           d3.select("svg")
             .append("path")
