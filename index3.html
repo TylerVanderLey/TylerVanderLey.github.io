@@ -6,7 +6,7 @@
 </head>
   <body>
     <h1>The Seasonality of COVID-19 Case Counts in the US Over Time</h1>
-    <p style="font-family: Trebuchet MS; font-size: 16px; padding-left: 10px;">
+    <p style="font-family: Trebuchet MS; font-size: 14px; padding-left: 10px;">
       Not long after the wave caused by the Delta variant, the US saw another massive spike in cases over the period from 
       December 2021 to February 2022. <br>By mid-January 2022, daily average case counts were just over 800,000, far above any 
       previously recorded number up until that point.<br>
@@ -20,7 +20,7 @@
       could prevent another surge like we saw last winter. Either way, it is worthwhile studying these<br> trends in case counts so we 
       can better predict and anticipate what will happen in the future. 
     </p>
-    <p style="font-family: Trebuchet MS; font-size: 12px; padding-left: 10px; margin-top: 40px; margin-bottom: 0px;">
+    <p style="font-family: Trebuchet MS; font-size: 12px; padding-left: 10px; margin-top: 20px; margin-bottom: 0px;">
       View exact counts in tooltip by hovering cursor over trend line:
     </p>
     <div class="chart">
@@ -44,8 +44,8 @@
       </a>
     </div>
     <script>
-      const width = 800;
-      const height = 400;
+      const width = 600;
+      const height = 300;
       const margin = 50;
       const marginLeft = 100;
       d3.select("svg")
@@ -74,42 +74,42 @@
 
           d3.select("svg")
             .append("path")
-            .attr("d", d3.line()([[300,50], [300,450]]))
+            .attr("d", d3.line()([[240,50], [240,350]]))
             .attr("class", "dashed")
             .attr("stroke", "black")
             .style("opacity", 0.15);
 
           d3.select("svg")
             .append("path")
-            .attr("d", d3.line()([[390,50], [390,450]]))
+            .attr("d", d3.line()([[305,50], [305,350]]))
             .attr("class", "dashed")
             .attr("stroke", "black")
             .style("opacity", 0.15);
 
           d3.select("svg")
             .append("path")
-            .attr("d", d3.line()([[525,50], [525,450]]))
+            .attr("d", d3.line()([[410,50], [410,350]]))
             .attr("class", "dashed")
             .attr("stroke", "black")
             .style("opacity", 0.15);
 
           d3.select("svg")
             .append("path")
-            .attr("d", d3.line()([[615,50], [615,450]]))
+            .attr("d", d3.line()([[475,50], [475,350]]))
             .attr("class", "dashed")
             .attr("stroke", "black")
             .style("opacity", 0.15);
 
           d3.select("svg")
             .append("path")
-            .attr("d", d3.line()([[660,50], [660,450]]))
+            .attr("d", d3.line()([[500,50], [500,350]]))
             .attr("class", "dashed")
             .attr("stroke", "black")
             .style("opacity", 0.4);
 
           d3.select("svg")
             .append("path")
-            .attr("d", d3.line()([[720,50], [720,450]]))
+            .attr("d", d3.line()([[555,50], [555,350]]))
             .attr("class", "dashed")
             .attr("stroke", "black")
             .style("opacity", 0.4);
@@ -120,7 +120,7 @@
             .html("Wave from late 2021 to early 2022,")
             .style("font-family", "sans-serif")
             .style("font-size", "12px")
-            .attr("transform", "translate(730,200)");
+            .attr("transform", "translate(565,200)");
 
           d3.select("svg")
             .append('g')
@@ -128,7 +128,7 @@
             .html("caused by Omicron variant")
             .style("font-family", "sans-serif")
             .style("font-size", "12px")
-            .attr("transform", "translate(730,220)");
+            .attr("transform", "translate(565,220)");
 
           d3.select("svg")
             .append("path")
